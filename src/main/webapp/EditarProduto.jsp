@@ -19,15 +19,17 @@ lista = dao.listaFornecedores(); // Atribui o resultado da busca à lista exibid
 <link rel="icon"
 	href="img/2992655_click_computer_currency_dollar_money_icon.png">
 <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 </head>
 
 <body>
 	<div id="form-container-cads">
-		<form name="editar" action="update" method="post">
+		<form name="editar" action="update" method="post" class="form-control">
 			<h2>Editar Produto</h2>
-			<label for="Codigo Do Produto">Codigo Do Produto:</label> <input
-				type="text" name="id" id="id" readonly
+			<label for="Codigo Do Produto"  class="form-label">Codigo Do Produto:</label> <input
+				type="text" class="form-control" name="id" id="id" readonly
 				value="<%out.print(request.getAttribute("id"));%>"> <label
 				for="descricao">Descrição:</label> <input type="text" id="descricao"
 				name="descricao"
@@ -42,7 +44,7 @@ lista = dao.listaFornecedores(); // Atribui o resultado da busca à lista exibid
 				type="text" id="preco_venda" name="preco_de_venda"
 				value="<%out.print(request.getAttribute("preco_de_venda"));%>"
 				required> <label for="fornecedor">Fornecedor:</label> <select
-					name="for_id">
+					name="for_id" >
 					<option value="" selected>Selecione o fornecedor</option>
 					<%
 					for (Fornecedores fornecedor : lista) {

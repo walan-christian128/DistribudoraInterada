@@ -34,6 +34,7 @@ prodop = proddao.nomeFonecedorProduto(produtos.getId());
 <link rel="icon" href="img/2992655_click_computer_currency_dollar_money_icon.png">
 <script src="scripts/buscaProduto.js"></script>
 <link rel="stylesheet" href="style.css">
+
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -115,8 +116,8 @@ body {
 </head>
 <body>
   
-    <div id="tables-container">
-      <div id="table-container">
+    <div id="tables-container" class="container-sm">
+      <div id="table-container" class="container-sm">
         <table>
           <thead>
             <tr>
@@ -160,7 +161,7 @@ body {
                 %>
               </td>
               <td><a href="select?id=<%=produto.getId()%>" class="button3">Editar</a>
-                <a href="apagar?id=<%=produto.getId()%>" class="button4">Apagar</a>
+                <a href="delete?id=<%=produto.getId()%>" class="button4">Apagar</a>
               </td>
             </tr>
             <%
@@ -169,7 +170,7 @@ body {
           </tbody>
         </table>
       </div>
-      <div id="table-vendas">
+      <div id="table-vendas" >
         <table>
           <thead>
             <tr>

@@ -16,7 +16,7 @@ import Model.Produtos;
 /**
  * Servlet implementation class produtosServer
  */
-@WebServlet(urlPatterns = { "/produtoServer", "/main", "/insert", "/select", "/update" })
+@WebServlet(urlPatterns = { "/produtoServer", "/main", "/insert", "/select", "/update","/delete" })
 public class produtosServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProdutosDAO dao = new ProdutosDAO();
@@ -49,7 +49,8 @@ public class produtosServer extends HttpServlet {
 			listandoProduto(request, response);
 		} else if (action.equals("/update")) {
 			EditarProdutos(request, response);
-
+		}else if (action.equals("/delete")) {
+			ApagarProdutos(request, response);
 		}
 	}
 
@@ -76,13 +77,7 @@ public class produtosServer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String descricao = request.getParameter("descricao");
-		String qtdEstoque = request.getParameter("qtd_estoque");
-		String precoCompra = request.getParameter("preco_de_compra");
-		String precoVenda = request.getParameter("preco_de_venda");
-		String fornecedorId = request.getParameter("for_id");
-		doGet(request, response);
+		
 	}
 
 	protected void listaPordutos(HttpServletRequest request, HttpServletResponse response)
@@ -175,6 +170,21 @@ public class produtosServer extends HttpServlet {
 
 	    RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
 	    rd.forward(request, response);
+	}
+	protected void ApagarProdutos(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+		String id = request.getParameter("id");
+		if(id != null) {
+		try {
+			
+			prod.setId(Integer.parseInt(id));
+			dao.excluir(prod);
+			response.sendRedirect("main.jsp");
+		} catch (Exception e) {
+			
+		}
+		
+	}
 	}
 
 
