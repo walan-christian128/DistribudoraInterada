@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -114,6 +115,50 @@ public class VendasDAO {
         }
 
     }
+    public List<Vendas> listarVendasdoDia() {
+        try {
+            //1 passo criar lista de Vendas//
+            List<Vendas> lista = new ArrayList<>();
+
+            // Obter a data atual do servidor
+            LocalDate dataAtual = LocalDate.now();
+            
+            // Converter a data atual para o formato de String desejado
+            String dataAtualFormatada = dataAtual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            String sql = "select v.id,date_format(v.data_venda,'%d/%m/%Y') as data_formatada,c.nome,v.total_venda,v.observacoes,v.lucro,v.desconto from tb_vendas as v "
+                    + "inner join tb_clientes as c on (v.cliente_id = c.id) where v.data_venda = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, dataAtualFormatada);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Vendas obj = new Vendas();
+                Clientes c = new Clientes();
+
+                obj.setId(rs.getInt("v.id"));
+                obj.setData_venda(rs.getString("data_formatada"));
+                c.setNome(rs.getString("c.nome"));
+                obj.setTotal_venda(rs.getDouble("v.total_venda"));
+                obj.setObs(rs.getString("v.observacoes"));
+                obj.setLucro(rs.getDouble("v.lucro"));
+                obj.setDesconto(rs.getDouble("v.desconto"));
+
+                obj.setCliente(c);
+
+                lista.add(obj);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 
     public double totalPorPeriodo(LocalDate data_inicio, LocalDate data_fim) {
         try {
