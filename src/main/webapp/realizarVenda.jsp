@@ -75,9 +75,13 @@
                 <input type="text" class="form-control" id="valor_de_compra" required>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" >
                 <label for="validationCustom01" class="form-label">Valor De Venda: </label>
-                <input type="text" class="form-control" id="valor_de_venda" required>
+               
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control col-md-3" id="valor_de_venda" required>
+                    <button class="btn btn-primary col-md-9" type="button">Adicionar item</button>
+                </div>
                
             </div>
             
@@ -93,13 +97,13 @@
                     <button class="btn btn-primary me-md-2" type="button">Desconto</button>
                     
                 </div>
-                <button class="btn btn-primary me-md-2" type="button">Adicionar item</button>
+              
              
         </div> 
 
         </form>
         <form class=" row g-3 needs-validation col-md-6">
-            <div class="p-3 mb-2 bg-light">
+            <div class="p-3  bg-light">
               <h2 class="d-flex justify-content-center">Itens Da Venda</h2>
               <div>
               <table class="table table-dark table-hover">
@@ -123,6 +127,7 @@
         </form>
         
 </main>
+         
      </body>
 
 
